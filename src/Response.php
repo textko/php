@@ -76,6 +76,29 @@ class Response
     {
         return $this->responseMsg;
     }
+
+    /**
+     * Convert this to array.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'http_code' => $this->httpCode,
+            'response_code' => $this->responseCode,
+            'response_msg' => $this->responseMsg,
+            'data' => (array)$this->data
+        ];
+    }
+
+    /**
+     * Convert this to JSON string.
+     */
+    public function toJson()
+    {
+        return json_encode($this->toArray());
+    }
 }
 
 #END OF PHP FILE
