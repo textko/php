@@ -1,0 +1,19 @@
+{
+  "name": "textko/php",
+  "description": "Official PHP library for Textko.com",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Textko",
+      "email": "hello@textko.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Textko\\": "src/"
+    }
+  },
+  "require": {
+    "guzzlehttp/guzzle": "6.2.*"
+  }
+}
