@@ -64,6 +64,68 @@ class Textko
         $this->client = new Client($options);
     }
 
+
+    /**
+     * Get message by id.
+     *
+     * @param $messageId
+     * @return Response
+     */
+    public function message($messageId)
+    {
+        try {
+
+            $response = $this->client->get($this->url('messages/' . $messageId));
+
+            return new Response($response);
+
+        } catch (ClientException $e) {
+            return new Response($e->getResponse());
+        }
+    }
+
+    /**
+     * Get list of messages.
+     *
+     * Result is paginated, so you need to pass a page no. value
+     * to iterate all of your messages.
+     *
+     * @param int $page
+     * @return Response
+     */
+    public function messages($page = 1)
+    {
+        try {
+
+            $response = $this->client->get($this->url('messages?page=' . $page));
+
+            return new Response($response);
+
+        } catch (ClientException $e) {
+            return new Response($e->getResponse());
+        }
+    }
+
+    /**
+     * Delete a message by id.
+     *
+     * @param $messageId
+     * @return Response
+     */
+    public function delete($messageId)
+    {
+        try {
+
+            $response = $this->client->delete($this->url('messages/' . $messageId));
+
+            return new Response($response);
+
+        } catch (ClientException $e) {
+            return new Response($e->getResponse());
+        }
+    }
+
+
     /**
      * Default request options.
      *

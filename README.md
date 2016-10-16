@@ -8,17 +8,18 @@ You can install our library via composer.
 composer require textko/php
 ```
 
-For more info, See our [Packagist Profile](https://packagist.org/packages/textko/php)
+For more info, see: [Packagist](https://packagist.org/packages/textko/php)
 
 ## Get Your API Token
 To start using this library, you need an API Token first. Creating an API token is easy and free.
 
-See: [Obtaining an API Token](https://textko.com/projects)
+[Get your API token here](https://textko.com/projects)
 
 ## Quick Usage
 
 To send a text message:
 
+Example:
 ```php
 <?php require_once 'vendor/autoload.php';
 
@@ -33,9 +34,69 @@ $response->data();
 
 ```
 
+## Get List of Messages
+
+To get your list of messages, use the `messages()` function.
+
+Example:
+```php
+<?php require_once 'vendor/autoload.php';
+
+// Initialize Textko.
+$textko = new Textko\Textko($apiToken);
+
+// Get list of messages.
+$response = $textko->messages();
+
+// Get response data.
+$response->data();
+
+```
+
+## Get a Message
+
+To get a message, use the `message($messageId)` function. The message id is required.
+
+Example:
+```php
+<?php require_once 'vendor/autoload.php';
+
+// Initialize Textko.
+$textko = new Textko\Textko($apiToken);
+
+// Get a message.
+$messageId = 12345;
+$response = $textko->message($messageId);
+
+// Get response data.
+$response->data();
+
+```
+
+## Delete a Message
+
+To delete a message, use the `delete($messageId)` function. The message id is required.
+
+Example:
+```php
+<?php require_once 'vendor/autoload.php';
+
+// Initialize Textko.
+$textko = new Textko\Textko($apiToken);
+
+// Get a message.
+$messageId = 12345;
+$response = $textko->delete($messageId);
+
+// Get response data.
+$response->data();
+
+```
+
+
 ## Response
 
-Usually all API responses are in the form of a `\Textko\Response` object.
+Usually all API responses are in the form of a `Response` object.
 
 
 ### Response Methods
@@ -43,12 +104,12 @@ Usually all API responses are in the form of a `\Textko\Response` object.
 |   | Description|
 |---|---|
 | `messageId()` | Useful for getting message id after sending a message.  |
-| `data()` | Get response data. Usually an object containing all message info.  |
+| `data()` | Get response data. Usually an object containing all data info.  |
 | `httpCode()` | Get HTTP code.  |
 | `responseCode()` | Get response code.  |
 | `responseMsg()` | Get response msg.  |
-| `toArray()` | Convert response object to a array.  |
-| `toJson()` | Convert response object to a JSON string.  |
+| `toArray()` | Convert response to a array.  |
+| `toJson()` | Convert response to a JSON string.  |
 
 ## Need help?
 
