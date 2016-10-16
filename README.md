@@ -111,6 +111,12 @@ Usually all API responses are in the form of a `Response` object.
 | `toArray()` | Convert response to a array.  |
 | `toJson()` | Convert response to a JSON string.  |
 
+## REST API Documentation
+
+To learn more about our REST API documentation.
+
+See: [REST API Documentation](http://docs.textkoapiv2.apiary.io/)
+
 ## Need help?
 
 Feel free to contact us. We are happy to assist.
