@@ -10,10 +10,10 @@ composer require textko/php
 
 For more info, see: [Packagist](https://packagist.org/packages/textko/php)
 
-## Get Your API Token
-To start using this library, you need an API Token first. Creating an API token is easy and free.
+## Get Your API Access Token
+To start using this library, you need an API Access Token first.
 
-[Get your API token here](https://textko.com/projects)
+[Register to Get Your Access Token](https://textko.com/register)
 
 ## Quick Usage
 
@@ -23,99 +23,63 @@ Example:
 ```php
 <?php require_once 'vendor/autoload.php';
 
-// Initialize Textko.
-$textko = new Textko\Textko($apiToken);
+$textko = new Textko\Sms('your-access-token-here');
 
-// Send a text message.
-$response = $textko->send('09171234567', 'My awesome text message');
+$sms = $textko->send('09171234567', 'My awesome text message');
 
-// Get response data.
-$response->data();
+$sms->smsId(); // Get sms id.
+$sms->toNo(); // Get recipient to no.
+$sms->text(); // Get sms text.
+$sms->status(); // Get sms current status.
 
 ```
 
-## Get List of Messages
+## Get List of Sms
 
-To get your list of messages, use the `messages()` function.
+To get your list of sms, use the `getList()` function.
 
 Example:
 ```php
 <?php require_once 'vendor/autoload.php';
 
-// Initialize Textko.
-$textko = new Textko\Textko($apiToken);
+$textko = new Textko\Sms('your-access-token-here');
 
-// Get list of messages.
-$response = $textko->messages();
+$list = $textko->getList();
 
-// Get response data.
-$response->data();
+$list->data(); // Get list of sms.
 
 ```
 
 ## Get a Message
 
-To get a message, use the `message($messageId)` function. The message id is required.
+To get a specific sms, use the `get($smsId)` function. The sms id is required.
 
 Example:
 ```php
 <?php require_once 'vendor/autoload.php';
 
-// Initialize Textko.
-$textko = new Textko\Textko($apiToken);
+$textko = new Textko\Sms('your-access-token-here');
 
-// Get a message.
-$messageId = 12345;
-$response = $textko->message($messageId);
+$smsId = 'ABC';
+$sms = $textko->get($smsId);
 
-// Get response data.
-$response->data();
-
-```
-
-## Delete a Message
-
-To delete a message, use the `delete($messageId)` function. The message id is required.
-
-Example:
-```php
-<?php require_once 'vendor/autoload.php';
-
-// Initialize Textko.
-$textko = new Textko\Textko($apiToken);
-
-// Get a message.
-$messageId = 12345;
-$response = $textko->delete($messageId);
-
-// Get response data.
-$response->data();
+$sms->smsId(); // Get sms id.
+$sms->toNo(); // Get recipient to no.
+$sms->text(); // Get sms text.
+$sms->status(); // Get sms current status.
 
 ```
 
+## Response &amp; Errors
 
-## Response
-
-Usually all API responses are in the form of a `Response` object.
-
-
-### Response Methods
-
-|   | Description|
-|---|---|
-| `messageId()` | Useful for getting message id after sending a message.  |
-| `data()` | Get response data. Usually an object containing all data info.  |
-| `httpCode()` | Get HTTP code.  |
-| `responseCode()` | Get response code.  |
-| `responseMsg()` | Get response msg.  |
-| `toArray()` | Convert response to a array.  |
-| `toJson()` | Convert response to a JSON string.  |
+Usually all API responses are in the form of a `SmsResponseContract`.
+And if something is wrong, it will throw `SmsException`.
 
 ## REST API Documentation
 
 To learn more about our REST API documentation.
 
-See: [REST API Documentation](http://docs.textkoapiv2.apiary.io/)
+See: [API Documentation](http://textko.com/developers)
 
 ## Need help?
 
